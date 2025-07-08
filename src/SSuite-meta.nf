@@ -1,24 +1,24 @@
 #!/usr/bin/env nextflow
 
 // Module INCLUDE statements
-include { FASTQC } from './modules/fastqc.nf'
-include { FASTP } from './modules/fastp.nf'
-include { KRAKEN2 } from './modules/kraken2.nf'
-include { METAPHLAN4 } from './modules/metaphlan4.nf'
-include { FASTQCB } from './modules/fastqc.nf'
-include { FASTQCK } from './modules/fastqc.nf'
-include { HUMANN4 } from './modules/humann4.nf'
-include { MULTIQC } from './modules/multiqc.nf'
+include { FASTQC } from '../modules/fastqc.nf'
+include { FASTP } from '../modules/fastp.nf'
+include { KRAKEN2 } from '../modules/kraken2.nf'
+include { METAPHLAN4 } from '../modules/metaphlan4.nf'
+include { FASTQCB } from '../modules/fastqc.nf'
+include { FASTQCK } from '../modules/fastqc.nf'
+include { HUMANN4 } from '../modules/humann4.nf'
+include { MULTIQC } from '../modules/multiqc.nf'
 
 /*
  * Pipeline parameters
  */
 
 // Primary input
-params.input_csv = "data/data.csv"
-params.kraken2_db_index_zip = "dbs/k2_human.tar.gz"
-params.metaphlan4_db_index_zip = "dbs/mpa_vOct2.tar.gz"
-params.humann4_db_index_zip = "dbs/humann4.0.0a1.tar.gz"
+params.input_csv = "../data/data.csv"
+params.kraken2_db_index_zip = "../dbs/k2_human.tar.gz"
+params.metaphlan4_db_index_zip = "../dbs/mpa_vOct2.tar.gz"
+params.humann4_db_index_zip = "../dbs/humann4.0.0a1.tar.gz"
 params.report_id = "all_paired-end"
 params.skip_functional_profile = false
 
