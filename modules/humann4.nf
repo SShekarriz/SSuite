@@ -3,7 +3,8 @@
 process HUMANN4 {
 
     //container "community.wave.seqera.io/library/pip_humann:c1f97bec0787fafe"
-    container "humann4_4.0.0a1"
+    //container "humann4_4.0.0a1"
+    container "sshekarriz/humann:4.0.0.a.1"
     publishDir "results/humann4", mode: 'copy'
 
     input:
