@@ -15,10 +15,10 @@ include { MULTIQC } from '../modules/multiqc.nf'
  */
 
 // Primary input
-params.input_csv = "../data/data.csv"
-params.kraken2_db_index_zip = "../dbs/k2_human.tar.gz"
-params.metaphlan4_db_index_zip = "../dbs/mpa_vOct2.tar.gz"
-params.humann4_db_index_zip = "../dbs/humann4.0.0a1.tar.gz"
+params.input_csv = "data/subset_data.csv"
+params.kraken2_db_index_zip = "dbs/k2_human.tar.gz"
+params.metaphlan4_db_index_zip = "dbs/mpa_vOct2.tar.gz"
+params.humann4_db_index_zip = "dbs/humann4.0.0a1.tar.gz"
 params.report_id = "all_paired-end"
 params.skip_functional_profile = false
 
