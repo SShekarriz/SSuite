@@ -1,14 +1,14 @@
 #!/usr/bin/env nextflow
 
 // Module INCLUDE statements
-include { FASTQC } from 'modules/fastqc.nf'
-include { FASTP } from 'modules/fastp.nf'
-include { KRAKEN2 } from 'modules/kraken2.nf'
-include { METAPHLAN4 } from 'modules/metaphlan4.nf'
-include { FASTQCB } from 'modules/fastqc.nf'
-include { FASTQCK } from 'modules/fastqc.nf'
-include { HUMANN4 } from 'modules/humann4.nf'
-include { MULTIQC } from 'modules/multiqc.nf'
+include { FASTQC } from '../modules/fastqc.nf'
+include { FASTP } from '../modules/fastp.nf'
+include { KRAKEN2 } from '../modules/kraken2.nf'
+include { METAPHLAN4 } from '../modules/metaphlan4.nf'
+include { FASTQCB } from '../modules/fastqc.nf'
+include { FASTQCK } from '../modules/fastqc.nf'
+include { HUMANN4 } from '../modules/humann4.nf'
+include { MULTIQC } from '../modules/multiqc.nf'
 
 /*
  * Pipeline parameters
