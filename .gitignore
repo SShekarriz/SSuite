@@ -3,3 +3,4 @@ results/
 work_temp/
 *html
 *.log
+.nextflow/
