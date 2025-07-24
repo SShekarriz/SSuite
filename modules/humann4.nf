@@ -25,7 +25,7 @@ process HUMANN4 {
     --nucleotide-database ${index_zip.simpleName}.0.0a1/chocophlan \
     --protein-database ${index_zip.simpleName}.0.0a1/uniref --bypass-translated-search \
     --utility-database ${index_zip.simpleName}.0.0a1/utility_mapping \
-    --threads 30 -o ./
+    --threads 10 -o ./
 
     """
 }
