@@ -4,6 +4,7 @@
 include { FASTQC } from './modules/fastqc.nf'
 include { FASTP } from './modules/fastp.nf'
 include { MULTIQC } from './modules/multiqc.nf'
+include { UNICYCLE } from './modules/unicycle.nf'
 
 /*
  * Pipeline parameters
@@ -29,7 +30,7 @@ workflow {
     FASTP(read_ch)
 
     // De novo assembly of paired-end reads
-    SPADE(
+    UNICYCLE(
         read_ch,
         params.report_id
     )
