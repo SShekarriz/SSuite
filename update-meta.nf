@@ -38,8 +38,6 @@ workflow {
         .splitCsv(header:true)
         .map { row -> [file(row.fastq_1), file(row.fastq_2)] }
 
-    // Initial QC
-    FASTQC(read_ch)
 
     // Adapter trimming
     FASTP(read_ch)
