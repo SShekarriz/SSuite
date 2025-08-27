@@ -2,4 +2,4 @@ dbs/
 results/
 work_temp/
 *html
-*.log
+*.log*
