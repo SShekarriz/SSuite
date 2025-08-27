@@ -1,0 +1,2 @@
+sample_id,fastq_1,fastq_2
+IMG146_S97,/datastore/phri/LRNS_001/raw_reads_merged/IMG146_S97.R1.fastq.gz,/datastore/phri/LRNS_001/raw_reads_merged/IMG146_S97.R2.fastq.gz
