@@ -1,5 +1,7 @@
 dbs/
 results/
 work_temp/
+work/
+temp/
 *html
 *.log*
