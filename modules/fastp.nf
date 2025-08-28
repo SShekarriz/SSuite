@@ -3,7 +3,6 @@
 process FASTP {
 
     //container "community.wave.seqera.io/library/fastp:0.24.1--6214360065b44e0b"
-    //container "file://$PWD/appt.images/fastp.sif"
     container "file://${params.apptainer_dir}/fastp.sif"
 
     publishDir "results/fastp", mode: 'symlink'

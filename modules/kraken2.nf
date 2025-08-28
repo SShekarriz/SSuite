@@ -2,7 +2,8 @@
 
 process KRAKEN2 {
 
-    container "community.wave.seqera.io/library/kraken2:2.1.5--2bd828274d201d82"
+    //container "community.wave.seqera.io/library/kraken2:2.1.5--2bd828274d201d82"
+    container "file://${params.apptainer_dir}/kraken2.sif"
     publishDir "results/kraken2", mode: 'copy'
 
     input:
