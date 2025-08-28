@@ -16,13 +16,11 @@ include { MULTIQC } from './modules/multiqc.nf'
 /*
  * Pipeline parameters
  */
-params.input_csv = "data/subset_data.csv"
-params.bwamem_index = "/dataone/common/ref_dbs/SSuite_dbs/hg38.tar.gz"
-params.kneadata_index = "/dataone/common/ref_dbs/SSuite_dbs/hg37_kneaddata.tar.gz"
-params.kraken2_db_index_zip = "/dataone/common/ref_dbs/SSuite_dbs/k2_human.tar.gz"
-params.metaphlan4_db_index_zip = "/dataone/common/ref_dbs/SSuite_dbs/mpa_vOct2.tar.gz"
-params.humann4_db_index_zip = "/dataone/common/ref_dbs/SSuite_dbs/humann4.0.0a1.tar.gz"
-params.report_id = "all_paired-end"
+params.bwamem_index = "${params.db_dir}/hg38.tar.gz"
+params.kneadata_index = "${params.db_dir}/hg37_kneaddata.tar.gz"
+params.kraken2_db_index_zip = "${params.db_dir}/k2_human.tar.gz"
+params.metaphlan4_db_index_zip = "${params.db_dir}/mpa_vOct2.tar.gz"
+params.humann4_db_index_zip = "${params.db_dir}/humann4.0.0a1.tar.gz"
 params.skip_functional_profile = false
 params.decontam_method = "kraken2" // Options: 'kraken2', 'bwa', 'kneaddata'
 
