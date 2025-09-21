@@ -68,12 +68,19 @@ workflow {
     }
 
     // MultiQC report
-    MULTIQC(
-        FASTQC.out.zip.mix(
-        FASTQC.out.html,
-        FASTQCK.out.zip,
-        FASTQCK.out.html,
-        ).collect(),
-        params.report_id
-    )
+    
+    // Collect appropriate FASTQC outputs based on decontamination method
+    qc_outputs_ch = FASTQC.out.zip.mix(FASTQC.out.html)
+
+    if (params.decontam_method == 'bwa') {
+        qc_outputs_ch = qc_outputs_ch.mix(FASTQCB.out.zip).mix(FASTQCB.out.html)
+    } else if (params.decontam_method == 'kneaddata') {
+        qc_outputs_ch = qc_outputs_ch.mix(FASTQCKN.out.zip).mix(FASTQCKN.out.html)
+    } else {
+        qc_outputs_ch = qc_outputs_ch.mix(FASTQCK.out.zip).mix(FASTQCK.out.html)
+    }
+
+// MultiQC report
+MULTIQC(qc_outputs_ch.collect(), params.report_id)
+
 }
