@@ -12,6 +12,7 @@ include { KNEADDATA } from './modules/kneadata.nf'
 include { METAPHLAN4 } from './modules/metaphlan4.nf'
 include { HUMANN4 } from './modules/humann4.nf'
 include { MULTIQC } from './modules/multiqc.nf'
+include { BOWTIE2 } from './modules/bowtie2.nf'
 
 /*
  * Pipeline parameters
@@ -21,14 +22,15 @@ params.kneadata_index = "${params.db_dir}/hg37_kneaddata.tar.gz"
 params.kraken2_db_index_zip = "${params.db_dir}/k2_human.tar.gz"
 params.metaphlan4_db_index_zip = "${params.db_dir}/mpa_vOct2.tar.gz"
 params.humann4_db_index_zip = "${params.db_dir}/humann4.0.0a1.tar.gz"
+params.bowtie2_index = "${params.db_dir}/bowtie2_index"
 params.skip_functional_profile = false
 params.decontam_method = "kraken2" // Options: 'kraken2', 'bwa', 'kneaddata'
 
 workflow {
 
     // Validate decontamination method
-    if (!['kraken2', 'bwa', 'kneaddata'].contains(params.decontam_method)) {
-        error "Invalid decontamination method: ${params.decontam_method}. Choose from 'kraken2', 'bwa', or 'kneaddata'."
+    if (!['kraken2', 'bwa', 'kneaddata', 'bowtie2'].contains(params.decontam_method)) {
+        error "Invalid decontamination method: ${params.decontam_method}. Choose from 'kraken2', 'bwa', 'kneaddata', or 'bowtie2'."
     }
 
     // Create input channel
@@ -51,6 +53,10 @@ workflow {
         KNEADDATA(FASTP.out.trimmed_reads, file(params.kneadata_index))
         FASTQCKN(KNEADDATA.out.decontam_reads)
         decontam_reads_ch = KNEADDATA.out.decontam_reads
+    } else if (params.decontam_method == 'bowtie2') {
+        BOWTIE2(FASTP.out.trimmed_reads, file(params.bowtie2_index))
+        FASTQCB(BOWTIE2.out.decontam_reads)
+        decontam_reads_ch = BOWTIE2.out.decontam_reads
     } else {
         KRAKEN2(FASTP.out.trimmed_reads, file(params.kraken2_db_index_zip))
         FASTQCK(KRAKEN2.out.decontam_reads)
