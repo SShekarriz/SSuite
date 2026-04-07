@@ -1,6 +1,6 @@
 # Surette Lab – Suite of Microbiome Workflows
 
-A collection of reproducible workflows developed in the Surette Lab for microbiome data analysis, with a focus on metagenomic profiling using best-practice tools and standardized processing steps.
+A collection of reproducible workflows developed in the Surette Lab for microbiome data analysis using best-practice tools and standardized processing steps.
 
 ---
 
