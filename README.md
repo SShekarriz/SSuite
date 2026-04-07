@@ -39,3 +39,14 @@ Nextflow requires Java 17 or newer.
 curl -s https://get.sdkman.io | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java 17.0.10-tem
+```
+
+### 2. Install Nextflow
+
+Nextflow is distributed as a self-contained executable. Download and make executable.
+
+```bash
+wget -qO- https://get.nextflow.io | bash
+chmod +x nextflow
+```
+
