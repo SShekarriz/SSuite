@@ -50,3 +50,66 @@ wget -qO- https://get.nextflow.io | bash
 chmod +x nextflow
 ```
 
+## Usage
+
+### Running the Pipeline
+
+The SSuite-meta pipeline is executed using Nextflow. A typical run requires a sample sheet in CSV format, a configuration file defining pipeline parameters, and an execution profile matching the target environment.
+
+#### Example command
+
+```bash
+PIPELINE_PATH=/path/to/SSuite-meta.nf
+CSV_FILE=/path/to/batch_id.csv
+
+nextflow -log "logs/batch_id_nextflow.log" \
+    run ${PIPELINE_PATH} \
+    -profile <profile_name> \
+    --input_csv ${CSV_FILE} \
+    -with-report "results/batch_id_report.html" \
+    -c "/path/to/pipeline.config" \
+    --outdir "results/batch_id_results" \
+    --base_dir "temp/batch_id_temp" \
+    -resume
+```
+
+## Pipeline Options (Summary)
+
+### Input and Output
+
+- `--input_csv`  
+  CSV file defining the input metagenomic FASTQ files and associated sample information.
+
+- `--outdir`  
+  Output directory where final taxonomic and functional profiling results are written.
+
+- `--base_dir`  
+  Temporary working directory used by Nextflow for intermediate files and execution metadata.
+
+---
+
+### Execution and Configuration
+
+- `-profile`  
+  Nextflow execution profile specifying the computing environment (e.g. local, cluster scheduler, container backend).
+
+- `-c`  
+  Custom Nextflow configuration file controlling resource allocation, database paths, and tool parameters.
+
+---
+
+### Reporting and Logging
+
+- `-with-report`  
+  Generates an HTML report summarizing pipeline performance, execution time, and resource usage.
+
+- `-log`  
+  Path to the Nextflow runtime log file for this run.
+
+---
+
+### Workflow Control
+
+- `-resume`  
+  Allows the pipeline to resume from previously completed steps in the event of interruption.
+
