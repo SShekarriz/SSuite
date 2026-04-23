@@ -7,11 +7,11 @@ process FASTQC {
     publishDir "results/fastqc", mode: 'symlink'
 
     input:
-    path reads
+    tuple val(sample_id), path(reads)
 
     output:
     path "*_fastqc.zip", emit: zip
-    path "*_fastqc.html", emit: html
+    tuple val(sample_id), path("*_fastqc.html"), emit: html
 
     script:
     """
@@ -25,11 +25,11 @@ process FASTQCB {
     publishDir "results/fastqc_bwa", mode: 'symlink'
 
     input:
-    path reads
+    tuple val(sample_id), path(reads)
 
     output:
     path "*_fastqc.zip", emit: zip
-    path "*_fastqc.html", emit: html
+    tuple val(sample_id), path("*_fastqc.html"), emit: html
 
     script:
     """
@@ -44,11 +44,11 @@ process FASTQCK {
     publishDir "results/fastqc_kraken", mode: 'symlink'
 
     input:
-    path reads
+    tuple val(sample_id), path(reads)
 
     output:
     path "*_fastqc.zip", emit: zip
-    path "*_fastqc.html", emit: html
+    tuple val(sample_id), path("*_fastqc.html"), emit: html
 
     script:
     """
@@ -62,11 +62,11 @@ process FASTQCKN {
     publishDir "results/fastqc_kneadata", mode: 'symlink'
 
     input:
-    path reads
+    tuple val(sample_id), path(reads)
 
     output:
     path "*_fastqc.zip", emit: zip
-    path "*_fastqc.html", emit: html
+    tuple val(sample_id), path("*_fastqc.html"), emit: html
 
     script:
     """
