@@ -8,7 +8,7 @@ process FASTP {
     publishDir "results/fastp", mode: 'symlink'
 
     input:
-    tuple path(read1), path(read2)
+    tuple val(sample_id, path(reads)
 
     output:
     tuple path("*.T.R1.fastq"), path("*.T.R2.fastq"), emit: trimmed_reads
