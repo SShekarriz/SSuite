@@ -7,15 +7,16 @@ process MULTIQC {
     publishDir "results/multiqc", mode: 'copy'
 
     input:
-    path '*'
-    val output_name
+    path 'inputs/*'
+    val batch_id
 
     output:
-    path "${output_name}.html", emit: report
-    path "${output_name}_data", emit: data
+    path "${batch)id}.html", emit: report
+    path "${batch_id}_data", emit: data
 
     script:
     """
-    multiqc . -n ${output_name}.html
+    multiqc inputs/ --filename "${batch_id}_multiQC_report.html" \
+	   --title "Batch QC: ${batch_id}"
     """
 }
