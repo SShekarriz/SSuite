@@ -7,9 +7,8 @@ process HUMANN4 {
     publishDir "results/humann4", mode: 'copy'
 
     input:
-    tuple val(sample_id), path(read1), path(read2)
+    tuple val(sample_id), path(read1), path(read2), path(taxprofile)
     path index_zip
-    tuple val(sample_id), path(taxprofile)
 
     output:
     path("*.log"), emit: logfile_output
