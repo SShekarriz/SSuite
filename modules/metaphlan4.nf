@@ -21,8 +21,8 @@ process METAPHLAN4 {
     --bowtie2db ${index_zip.simpleName} \
     -x mpa_vOct22_CHOCOPhlAnSGB_202403 -t rel_ab_w_read_stats \
     --unclassified_estimation --add_viruses \
-    --input_type fastq -o ${read1.simpleName}.taxprofile \
-    --bowtie2out ${read1.simpleName}.bowtie2.bz2 --nproc 10
+    --input_type fastq -o ${sample_id}.taxprofile \
+    --bowtie2out ${sample_id}.bowtie2.bz2 --nproc 10
     
     """
 }
