@@ -7,11 +7,11 @@ process METAPHLAN4 {
     publishDir "results/metaphlan4", mode: 'copy'
 
     input:
-    tuple path(read1), path(read2)
+    tuple val(sample_id), path(read1), path(read2)
     path index_zip
 
     output:
-    path("*.taxprofile"), emit: taxa_profile
+    tuple val(sample_id), path("*.taxprofile"), emit: taxa_profile
     path("*.bowtie2.bz2"), emit: bowtie2out
 
     script:
