@@ -19,7 +19,7 @@ process HUMANN4 {
     script:
     """
     tar -xzvf $index_zip
-    humann -i ${read1} --taxonomic-profile $taxprofile --input-format fastq \
+    humann -i ${read1} --taxonomic-profile ${taxprofile} --input-format fastq \
     --nucleotide-database ${index_zip.simpleName}.0.0a1/chocophlan \
     --protein-database ${index_zip.simpleName}.0.0a1/uniref --bypass-translated-search \
     --utility-database ${index_zip.simpleName}.0.0a1/utility_mapping \
