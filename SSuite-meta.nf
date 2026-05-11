@@ -68,7 +68,12 @@ workflow {
 
     // Functional profiling
     if (!params.skip_functional_profile) {
-        HUMANN4(decontam_reads_ch, file(params.humann4_db_index_zip), METAPHLAN4.out.taxa_profile)
+
+        // join taxprofile and reads channels for annotation
+        combined_ch = decontam_reads_ch.join(METAPHLAN4.out.taxa_profile)
+
+        HUMANN4(combined_ch, file(params.humann4_db_index_zip))
+
     } else {
         log.info "Skipping HUMANN4 functional annotation step as requested."
     }
