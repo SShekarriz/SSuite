@@ -36,7 +36,9 @@ workflow {
     // Create input channel
     read_ch = Channel.fromPath(params.input_csv)
         .splitCsv(header:true)
-        .map { row -> [file(row.fastq_1), file(row.fastq_2)] }
+        .map { row -> 
+            [row.sample_id, file(row.fastq_1), file(row.fastq_2)]
+    }
 
     // Call processes
     FASTQC(read_ch)
