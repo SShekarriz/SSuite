@@ -14,19 +14,27 @@ process COMEBIN {
         tuple val(sample_id), path("${sample_id}_comebin_bins/bins/${sample_id}.comebin.*.fa*"), emit: bins
         path "comebin.log", emit: log
 
-        script:
+      script:
         def out_dir = "${sample_id}_comebin_bins"
         def bin_dir = "${out_dir}/bins"
         """
-        comebin multi_sample_bin \
-            --input_fasta "${contigs}" \
-            --input_bam ${bams} \
-            --output_dir "${out_dir}" \
-            --threads ${task.cpus} \
-            > comebin.log 2>&1
+        # Create the output directory before running comebin
+        mkdir -p "${out_dir}"
 
-        ## rename for later
-        ${rename_bins(sample_id, 'comebin', bin_dir)}
+         # Get absolute paths for inputs and outputs
+        FASTA_ABS=\$(realpath "${contigs}")
+        BAM_DIR_ABS=\$(realpath .)
+        OUT_DIR_ABS=\$(realpath "${out_dir}")
+
+        # Change into the tool's directory so it can find 'main.py'
+        cd /usr/local/bin/COMEBin/
+
+        bash run_comebin.sh \
+            -a "\${FASTA_ABS}" \
+            -p "\${BAM_DIR_ABS}" \
+            -o "\${OUT_DIR_ABS}" \
+            -t ${task.cpus} \
+              > "\${OUT_DIR_ABS}/comebin.log" 2>&1
 
         """
 }
