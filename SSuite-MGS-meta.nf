@@ -14,18 +14,6 @@ include { HUMANN4 } from './modules/humann4.nf'
 include { MULTIQC } from './modules/multiqc.nf'
 include { BOWTIE2 } from './modules/bowtie2.nf'
 
-/*
- * Pipeline parameters
- */
-params.bwamem_index = "${params.db_dir}/hg38.tar.gz"
-params.kneadata_index = "${params.db_dir}/hg37_kneaddata.tar.gz"
-params.kraken2_db_index_zip = "${params.db_dir}/k2_human.tar.gz"
-params.metaphlan4_db_index_zip = "${params.db_dir}/mpa_vOct2.tar.gz"
-params.humann4_db_index_zip = "${params.db_dir}/humann4.0.0a1.tar.gz"
-params.bowtie2_index = "${params.db_dir}/bowtie2_index"
-params.skip_functional_profile = false
-params.decontam_method = "kraken2" // Options: 'kraken2', 'bwa', 'kneaddata'
-
 workflow {
 
     // Validate decontamination method
@@ -36,7 +24,9 @@ workflow {
     // Create input channel
     read_ch = Channel.fromPath(params.input_csv)
         .splitCsv(header:true)
-        .map { row -> [file(row.fastq_1), file(row.fastq_2)] }
+        .map { row -> 
+            [row.sample_id, file(row.fastq_1), file(row.fastq_2)]
+    }
 
     // Call processes
     FASTQC(read_ch)
@@ -68,7 +58,12 @@ workflow {
 
     // Functional profiling
     if (!params.skip_functional_profile) {
-        HUMANN4(decontam_reads_ch, file(params.humann4_db_index_zip), METAPHLAN4.out.taxa_profile)
+
+        // join taxprofile and reads channels for annotation
+        combined_ch = decontam_reads_ch.join(METAPHLAN4.out.taxa_profile)
+
+        HUMANN4(combined_ch, file(params.humann4_db_index_zip))
+
     } else {
         log.info "Skipping HUMANN4 functional annotation step as requested."
     }

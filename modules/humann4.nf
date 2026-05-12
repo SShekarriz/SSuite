@@ -7,9 +7,8 @@ process HUMANN4 {
     publishDir "results/humann4", mode: 'copy'
 
     input:
-    tuple path(read1), path(read2)
+    tuple val(sample_id), path(read1), path(read2), path(taxprofile)
     path index_zip
-    path taxprofile
 
     output:
     path("*.log"), emit: logfile_output
@@ -20,7 +19,7 @@ process HUMANN4 {
     script:
     """
     tar -xzvf $index_zip
-    humann -i ${read1} --taxonomic-profile $taxprofile --input-format fastq \
+    humann -i ${read1} --taxonomic-profile ${taxprofile} --input-format fastq \
     --nucleotide-database ${index_zip.simpleName}.0.0a1/chocophlan \
     --protein-database ${index_zip.simpleName}.0.0a1/uniref --bypass-translated-search \
     --utility-database ${index_zip.simpleName}.0.0a1/utility_mapping \

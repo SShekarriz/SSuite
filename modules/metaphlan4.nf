@@ -7,11 +7,11 @@ process METAPHLAN4 {
     publishDir "results/metaphlan4", mode: 'copy'
 
     input:
-    tuple path(read1), path(read2)
+    tuple val(sample_id), path(read1), path(read2)
     path index_zip
 
     output:
-    path("*.taxprofile"), emit: taxa_profile
+    tuple val(sample_id), path("*.taxprofile"), emit: taxa_profile
     path("*.bowtie2.bz2"), emit: bowtie2out
 
     script:
@@ -21,8 +21,8 @@ process METAPHLAN4 {
     --bowtie2db ${index_zip.simpleName} \
     -x mpa_vOct22_CHOCOPhlAnSGB_202403 -t rel_ab_w_read_stats \
     --unclassified_estimation --add_viruses \
-    --input_type fastq -o ${read1.simpleName}.taxprofile \
-    --bowtie2out ${read1.simpleName}.bowtie2.bz2 --nproc 10
+    --input_type fastq -o ${sample_id}.taxprofile \
+    --bowtie2out ${sample_id}.bowtie2.bz2 --nproc 10
     
     """
 }

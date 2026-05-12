@@ -8,18 +8,18 @@ process FASTP {
     publishDir "results/fastp", mode: 'symlink'
 
     input:
-    tuple path(read1), path(read2)
+    tuple val(sample_id), path(reads)
 
     output:
-    tuple path("*.T.R1.fastq"), path("*.T.R2.fastq"), emit: trimmed_reads
+    tuple val(sample_id), path("*.T.R1.fastq"), path("*.T.R2.fastq"), emit: trimmed_reads
     path "*.fastp.html", emit: html_report
 
     script:
     """
-    fastp -i ${read1} -I ${read2} \
-        -o ${read1.simpleName}.T.R1.fastq \
-        -O ${read2.simpleName}.T.R2.fastq \
-        --thread 8 --html ${read1.simpleName}.fastp.html
+    fastp -i ${reads[0]} -I ${reads[1]} \
+        -o ${sample_id}.T.R1.fastq \
+        -O ${sample_id}.T.R2.fastq \
+        --thread 8 --html ${sample_id}.fastp.html
 
     """
 }
