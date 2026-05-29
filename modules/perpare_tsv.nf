@@ -7,14 +7,22 @@ process PREPARE_TSV_DASTOOLS {
 	publishDir "results/dastools/tsv", mode: 'copy'
     
     input:
-    tuple val(sample_id), val(binner_name), path(bin_dir)
+    tuple val(sample_id), path(bin_dir)
+	val binner_name
     
     output:
-     tuple val(sample_id), path("${sample_id}_${binner_name}_contigs2bin.tsv"), emit: tsv
+    tuple val(sample_id), path("${sample_id}_${binner_name}_contigs2bin.tsv"), emit: tsv
 
     script:
     """
-	# Use -i . because Nextflow staged the bin_dir files into the root
-	Fasta_to_Contig2Bin.sh -i . -e fa > ${sample_id}_${binner_name}_contigs2bin.tsv
+	# 1. Peek inside bin directory to see if files end in .fa or .fasta
+    FIRST_FILE=\$(ls *.fa* | head -n 1)
+    EXT=\${FIRST_FILE##*.}
+
+    # 2. Pass the dynamic extension to the helper script
+    Fasta_to_Contig2Bin.sh \
+        -i . \
+        -e \$EXT \
+        > ${sample_id}_${binner_name}_contig2bin.tsv
     """
 }
