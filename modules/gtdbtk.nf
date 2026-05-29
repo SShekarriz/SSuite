@@ -14,8 +14,15 @@ process GTDBTK {
 	tuple val(sample_id), path("${sample_id}_GTDBK/*"), emit: results
 
 	script:
-      	"""
-	gtdbtk classify_wf --genome_dir ${bins_dir} \
-	    --out_dir "${sample_id}_GTDBK" --force
+    """
+	# Export the environment variable directly within the execution shell
+	export GTDBTK_DATA_PATH="${params.gtdbtk_db}"
+
+	gtdbtk classify_wf \
+		--genome_dir . \
+	    --out_dir "${sample_id}_GTDBK" \
+		--cpus ${task.cpus} \
+		-x fa \
+		--force
 	"""
 }
