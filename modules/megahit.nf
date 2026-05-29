@@ -16,8 +16,8 @@ process MEGAHIT {
         script:
         """
         megahit -1 ${reads[0]} -2 ${reads[1]} \
-        -o ${sample_id}_output --out-prefix ${sample_id} \
-        -t ${task.cpus}
+                -o ${sample_id}_output --out-prefix ${sample_id} \
+                -t ${task.cpus}
 
         """
 }
