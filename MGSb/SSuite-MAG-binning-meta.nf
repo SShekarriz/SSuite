@@ -45,7 +45,7 @@ workflow {
         .splitCsv(header:true)
         .map { row ->
                 // Define the ID and the Reads based on column headers
-                def sample_id    = row.sample_id
+                def sample_id = row.sample_id
                 def contigs = file(row.assembly)
 
                 // Return the clean tuple structure
