@@ -1,0 +1,11 @@
+sample_id,fastq_1,fastq_2
+CHG2098_S292,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2098_S292_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2098_S292_R1_001_DR_2.fastq
+CHG2099_S293,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2099_S293_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2099_S293_R1_001_DR_2.fastq
+CHG2100_S294,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2100_S294_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2100_S294_R1_001_DR_2.fastq
+CHG2101_S295,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2101_S295_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2101_S295_R1_001_DR_2.fastq
+CHG2102_S296,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2102_S296_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2102_S296_R1_001_DR_2.fastq
+CHG2103_S297,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2103_S297_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2103_S297_R1_001_DR_2.fastq
+CHG2104_S299,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2104_S299_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2104_S299_R1_001_DR_2.fastq
+CHG2105_S300,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2105_S300_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2105_S300_R1_001_DR_2.fastq
+CHG2106_S301,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2106_S301_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2106_S301_R1_001_DR_2.fastq
+CHG2107_S302,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2107_S302_R1_001_DR_1.fastq,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2107_S302_R1_001_DR_2.fastq
