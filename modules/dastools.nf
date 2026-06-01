@@ -17,7 +17,7 @@ process DASTOOLS {
 
 	script:
 	def bin_dir = "${sample_id}_DASTool_bins"
-      	"""
+    """
 	DAS_Tool -i ${bins_tsv} \
              -c ${contigs} \
 			 -l ${params.binning_method} \
