@@ -142,8 +142,11 @@ workflow {
 
     } else if (params.binning_method == 'metabinner'){
 
-        // generate coverage file using internal helper function
         // use depth file from previous metabat2 module to calculate coverage
+         GENERATE_DEPTH_METABAT2(grouped_bams_ch)
+        depth_ch = GENERATE_DEPTH_METABAT2.out.depth
+
+        // generate coverage file using internal helper function
         GENERATE_COVERAGE_METABINNER(depth_ch)
         coverage_ch = GENERATE_COVERAGE_METABINNER.out.coverage
 
