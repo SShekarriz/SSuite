@@ -24,8 +24,5 @@ process DASTOOLS {
              -o "${sample_id}" \
              --write_bins \
              --threads ${task.cpus}
-
-	# rename the files using global function
-    	${rename_bins(sample_id, 'dastool', bin_dir)}
 	"""
 }
