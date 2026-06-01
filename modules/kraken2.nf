@@ -12,7 +12,7 @@ process KRAKEN2 {
 
     output:
     tuple val(sample_id), path("${sample_id}_D_R{1,2}.fastq"), emit: decontam_reads
-    tuple val(sample_id), path("${sample_id}_C_R{1,2}.fastq"), emit: decontam_reads
+    tuple val(sample_id), path("${sample_id}_C_R{1,2}.fastq"), emit: contam_reads
 
     script:
     """
