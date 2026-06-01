@@ -152,8 +152,8 @@ workflow {
 
         // generate kmer files (one per sample) using internal helper function
         // use contigs w/ additional length and threshold args (defined in params)
-        GENERATE_KMER_METABINNER(contigs_ch, kmer_size, length_thresh)
-        kmer_ch = GENERATE_KMER_METABINNER.out.coverage
+        GENERATE_KMERS_METABINNER(contigs_ch, kmer_size, length_thresh)
+        kmer_ch = GENERATE_KMERS_METABINNER.out.coverage
 
         // join sample ID'ed contigs channel to kmer and coverage channels for same sample
         metabinner_input = contigs_ch
