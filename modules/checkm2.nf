@@ -16,8 +16,9 @@ process CHECKM2 {
 
 	script:
       	"""
-	checkm2 predict --threads ${task.cpus} \\
-                    --input ${bins_dir} \\
-                    --output-directory ${sample_id}_checkm2}
+	checkm2 predict --threads ${task.cpus} \
+                    --input ${bins_dir} \
+                    --output-directory ${sample_id}_checkm2} \
+					--database_path ${params.checkm2_db}
 	"""
 }

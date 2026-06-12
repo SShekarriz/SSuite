@@ -12,17 +12,20 @@ process KRAKEN2 {
 
     output:
     tuple val(sample_id), path("${sample_id}_D_R{1,2}.fastq"), emit: decontam_reads
-    tuple val(sample_id), path("${sample_id}_C_R{1,2}.fastq"), emit: decontam_reads
+    tuple val(sample_id), path("${sample_id}_C_R{1,2}.fastq"), emit: contam_reads
 
     script:
     """
     tar -xzvf $index_zip
 
-    kraken2 --db ${index_zip.simpleName} ${read1} ${read2} \
-    --use-names --paired --threads 10 \
-    --output ${sample_id}.names --report ${sample_id}.report \
-    --unclassified-out ${sample_id}_D_R#.fastq \
-    --classified-out ${sample_id}_C_R#.fastq
+    kraken2 --db ${index_zip.simpleName} \
+        --paired ${read1} ${read2} \
+        --use-names \
+        --threads 10 \
+        --output ${sample_id}.names \
+        --report ${sample_id}.report \
+        --unclassified-out ${sample_id}_D_R#.fastq \
+        --classified-out ${sample_id}_C_R#.fastq
     
     """
 }

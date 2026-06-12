@@ -7,7 +7,7 @@ process MULTIQC {
     publishDir "results/multiqc", mode: 'copy'
 
     input:
-    path 'inputs/*'
+    path all_files
     val batch_id
 
     output:
@@ -16,7 +16,7 @@ process MULTIQC {
 
     script:
     """
-    multiqc inputs/ --filename "${batch_id}_multiQC_report.html" \
-	   --title "Batch QC: ${batch_id}"
+    multiqc ${all_files} --filename "${batch_id}_multiQC_report.html" \
+	   		--title "Batch QC: ${batch_id}"
     """
 }

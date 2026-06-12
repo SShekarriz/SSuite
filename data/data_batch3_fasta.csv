@@ -1,0 +1,3 @@
+sample_id,assembly,fastq_DR1,fastq_DR2
+CHG2098_S292,/project/6007957/users/greenm11/mag_nextflow_assem/results/filtered_assemblies/CHG2098_S292_filtered.fasta,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2098_S292_R1_001_DR_1.fastq.gz,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2098_S292_R1_001_DR_2.fastq.gz
+CHG2099_S293,/project/6007957/users/greenm11/mag_nextflow_assem/results/filtered_assemblies/CHG2099_S293_filtered.fasta,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2099_S293_R1_001_DR_1.fastq.gz,/project/6007957/MGProcessing/miranda/results/LRNS009_24_results/kraken2/CHG2099_S293_R1_001_DR_2.fastq.gz
