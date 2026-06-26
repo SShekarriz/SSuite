@@ -1,18 +1,18 @@
 #!/usr/bin/env nextflow
 
 // Module INCLUDE statements (main modules)
-include { FASTQC as FASTQC_RAW } from './modules/fastqc.nf'
-include { FASTQC as FASTQC_TRIMMED } from './modules/fastqc.nf'
-include { FASTP } from './modules/fastp.nf'
-include { BWAMEM2 } from './modules/bwamem2.nf'
-include { KRAKEN2 } from './modules/kraken2.nf'
-include { MEGAHIT } from './modules/megahit.nf'
-include { METASPADES } from './modules/metaspades.nf'
-include { QUAST } from './modules/quast.nf'
-include { FILTER_CONTIGS } from './modules/filter_contigs.nf'
-include { PROKKA } from './modules/prokka.nf'
-include { BAKTA } from './modules/bakta.nf'
-include { MULTIQC } from './modules/multiqc.nf'
+include { FASTQC as FASTQC_RAW } from '../modules/fastqc.nf'
+include { FASTQC as FASTQC_TRIMMED } from '../modules/fastqc.nf'
+include { FASTP } from '../modules/fastp.nf'
+include { BWAMEM2 } from '../modules/bwamem2.nf'
+include { KRAKEN2 } from '../modules/kraken2.nf'
+include { MEGAHIT } from '../modules/megahit.nf'
+include { METASPADES } from '../modules/metaspades.nf'
+include { QUAST } from '../modules/quast.nf'
+include { FILTER_CONTIGS } from '../modules/filter_contigs.nf'
+include { PROKKA } from '../modules/prokka.nf'
+include { BAKTA } from '../modules/bakta.nf'
+include { MULTIQC } from '../modules/multiqc.nf'
 
 
 // ========================================== MAIN WORKFLOW ================================================//
