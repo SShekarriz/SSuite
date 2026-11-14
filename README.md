@@ -1,21 +1,37 @@
 # Surette Lab – Suite of Microbiome Workflows
 
-A collection of reproducible workflows developed in the Surette Lab for microbiome data analysis using best-practice tools and standardized processing steps.
+A library of reproducible workflows developed in the Surette Lab for microbiome data analysis using best-practice tools and standardized processing steps.
 
 ---
 
-## Metagenomic Profiling Pipeline (SSuite-meta)
+## Metagenomics Analysis Pipeline (SSuite-meta)
 
-**SSuite-meta** is a Nextflow-based pipeline for generating taxonomic and functional profiles from shotgun metagenomic sequencing data.
+**SSuite-meta** is a Nextflow-based pipeline collection for generating taxonomic profiles, functional profiles, and annotated metagenome-assembled genomes (MAGs) from shotgun metagenomic sequencing data.
 
-The pipeline performs:
+The **MGSp** pipeline performs:
 
 - Quality filtering of raw reads using **fastp**
 - Removal of host (human) DNA using **Kraken2** with **CHM13 T2T** as the reference genome
 - Taxonomic profiling using **MetaPhlAn 4**
 - Functional profiling using **HUMAnN 4**
 
-Multiple host decontamination strategies are supported, allowing users to tailor processing to their data and analysis requirements.
+The **MGSa** pipeline performs:
+
+- Optional quality filtering and decontamination using **fastp** and **kraken2**
+- MAG assembly using **metaspades** or **megahit**
+- Assembly filtering and quality control using **QUAST**
+- Functional annotation of contigs using **bakta** or **prokka**
+
+The **MGSb** pipeline performs:
+
+- Read cross-mapping using **bowtie2**
+- Binning using a user-selected set of binners, options include **comebin**, **concoct**, **maxbin2**, **metabinner** and **metabat2**
+- Bin refinement using **DASTools**
+- Bin quality control using **CheckM2**
+- Bin relative abundance profiles using **coverM**
+- Bin taxonomic classification using **GTDB-TK**
+
+Multiple host decontamination, assembly, and annotation strategies are supported, allowing users to tailor processing to their data and analysis requirements.
 
 ---
 
@@ -54,13 +70,13 @@ chmod +x nextflow
 
 ### Running the Pipeline
 
-The SSuite-meta pipeline is executed using Nextflow. A typical run requires a sample sheet in CSV format, a configuration file defining pipeline parameters, and an execution profile matching the target environment.
+The SSuite-meta pipeline is executed using Nextflow. A typical run requires a sample sheet in CSV format, a configuration file defining pipeline parameters, and an execution profile matching the target environment. Example input CSVs for each pipeline are provided in the *example_data* folder
 
 #### Example command
 
 ```bash
 PIPELINE_PATH=/path/to/SSuite-meta.nf
-CSV_FILE=/path/to/batch_id.csv
+CSV_FILE=/path/to/input_paths.csv
 
 nextflow -log "logs/batch_id_nextflow.log" \
     run ${PIPELINE_PATH} \
@@ -78,7 +94,10 @@ nextflow -log "logs/batch_id_nextflow.log" \
 ### Input and Output
 
 - `--input_csv`  
-  CSV file defining the input metagenomic FASTQ files and associated sample information.
+  CSV file defining paths to...
+  - for MGSp: the input metagenomic FASTQ files and associated sample information (sample_id column).
+  - for MGSa: either raw OR trimmed/decontaminated reads (kraken2 output) and associated sample information.
+  - for MGSb: sample info, completed assembly fasta, trimmed/decontaminated reads and associated sample information.
 
 - `--outdir`  
   Output directory where final taxonomic and functional profiling results are written.
