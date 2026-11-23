@@ -17,18 +17,18 @@ The **MGSp** pipeline performs:
 
 The **MGSa** pipeline performs:
 
-- Optional quality filtering and decontamination using **fastp** and **kraken2**
-- MAG assembly using **metaspades** or **megahit**
+- Optional quality filtering and decontamination using **fastp** and **Kraken2**
+- MAG assembly using **metaSPAdes** or **MEGAHIT**
 - Assembly filtering and quality control using **QUAST**
-- Functional annotation of contigs using **bakta** or **prokka**
+- Functional annotation of contigs using **Bakta** or **Prokka**
 
 The **MGSb** pipeline performs:
 
 - Read cross-mapping using **bowtie2**
-- Binning using a user-selected set of binners, options include **comebin**, **concoct**, **maxbin2**, **metabinner** and **metabat2**
+- Binning using a user-selected set of binners, options include **COMEbin**, **CONCOCT**, **MaxBin2**, **MetaBinner** and **MetaBAT2**
 - Bin refinement using **DASTools**
 - Bin quality control using **CheckM2**
-- Bin relative abundance profiles using **coverM**
+- Bin relative abundance profiles using **CoverM**
 - Bin taxonomic classification using **GTDB-TK**
 
 Multiple host decontamination, assembly, and annotation strategies are supported, allowing users to tailor processing to their data and analysis requirements.
